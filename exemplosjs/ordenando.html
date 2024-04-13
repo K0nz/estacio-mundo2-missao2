@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordenação e Mistura</title>
+    <script src="ordenando.js"></script>
+</head>
+<body class="container bg-warning">
+    <label for="valor">Valor:</label>
+    <input type="number" id="valor">
+    <button onclick="addValueToList()">Adicionar</button>
+    <br><br>
+    <label for="algoritmo">Selecione o algoritmo:</label>
+    <select id="algoritmo">
+        <option value="bubble">Bubble Sort</option>
+        <option value="selection">Selection Sort</option>
+        <option value="quick" selected>Quick Sort</option>
+    </select>
+    <button onclick="orderList()">Ordenar</button>
+    <button onclick="shuffleList()">Misturar</button>
+    <ul id="valores"></ul>
+</body>
+</html>

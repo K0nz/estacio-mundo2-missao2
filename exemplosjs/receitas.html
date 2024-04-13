@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Receitas</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .bg-warning {
+            background-color: #ffc107 !important;
+        }
+    </style>
+</head>
+<body onload="preencheCatalogo()">
+
+    <!-- Área do menu -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="home.html">Home</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="receitas.html">Receitas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="cadastro.html">Cadastro</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Área principal - Apresentação do conjunto de receitas -->
+    <div class="container-fluid bg-warning">
+        <div id="pnlCatalogo" class="row justify-content-center mt-5 flex-wrap">
+            <!-- Os painéis de receita serão adicionados aqui -->
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="mt-5 fixed-bottom">
+        <div class="container">
+            <p class="text-center">&copy; Jurema 2024</p>
+        </div>
+    </footer>
+
+    <script>
+        const receitas = [
+            {
+                titulo: "Arroz",
+                imagem: "media/arroz.png",
+                preparo: "Refogue o alho, adicione o arroz e frite por alguns segundos, adicione água e sal, abaixe o fogo, tampe a panela, mas deixe uma abertura, espere a água secar, se o arroz ainda estiver duro adicione mais água e espere secar até ficar no ponto.",
+                ingredientes: ["Arroz", "Alho"]
+            },
+            {
+                titulo: "Feijão",
+                imagem: "media/feijao.png",
+                preparo: "Cozinhe o feijão em água com sal. Em outra panela, refogue alho e cebola. Misture o feijão cozido ao refogado e deixe cozinhar por mais alguns minutos.",
+                ingredientes: ["Feijão", "Alho", "Cebola", "Sal"]
+            },
+            {
+                titulo: "Macarrão",
+                imagem: "media/macarrao.png",
+                preparo: "Cozinhe o macarrão em água fervente com sal até ficar al dente. Escorra e misture com o molho de tomate. Polvilhe queijo ralado por cima.",
+                ingredientes: ["Macarrão", "Molho de tomate", "Queijo ralado", "Sal"]
+            }
+        ];
+
+        function getListaIngredientes(receita) {
+            const lista = receita.ingredientes.map(ingrediente => `<li>${ingrediente}</li>`).reduce((acc, curr) => acc + curr, '');
+            return `<ul>${lista}</ul>`;
+        }
+
+        function getCard(receita) {
+            return `
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="${receita.imagem}" class="card-img-top" alt="Foto de ${receita.titulo}">
+                        <div class="card-body">
+                            <h5 class="card-title">${receita.titulo}</h5>
+                            <div class="card-text">
+                                ${getListaIngredientes(receita)}
+                                <hr>
+                                <p>${receita.preparo}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function preencheCatalogo() {
+            const pnlCatalogo = document.getElementById('pnlCatalogo');
+            const htmlReceitas = receitas.map(receita => getCard(receita)).reduce((acc, curr) => acc + curr, '');
+            pnlCatalogo.innerHTML = htmlReceitas;
+        }
+    </script>
+
+   
